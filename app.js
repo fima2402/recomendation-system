@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import firebase from './config/firebase.js';
 import {swagerUi} from './config/swager.js';
-import dotenv from 'dotenv'; // Menggunakan dotenv untuk memuat variabel lingkungan
+import dotenv from 'dotenv';
 import fs from 'fs'
 import yaml from 'yaml'
 
@@ -12,6 +12,8 @@ import yaml from 'yaml'
 import indexRouter from './routes/index.js';
 import seederRouter from './routes/seeders.js';
 import recomendationSyestemRouter from './routes/recomendation_system.js';
+import address from './routes/address.js';
+import schools from './routes/schools.js';
 
 dotenv.config();
 
@@ -28,9 +30,11 @@ app.use(cookieParser());
 
 app.use('/api-docs', swagerUi.serve, swagerUi.setup(swagerDocument));
 
-app.use('/', indexRouter);
+app.use('/', swagerUi.serve, swagerUi.setup(swagerDocument));
 app.use('/seeder', seederRouter);
 app.use('/recomendation_system', recomendationSyestemRouter);
+app.use('/address', address);
+app.use('/schools', schools);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

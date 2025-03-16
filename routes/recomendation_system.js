@@ -1,4 +1,4 @@
-import express, { response } from 'express';
+import express from 'express';
 
 import { getFirestore, collection, getDoc, doc, getDocs, query, where, limit } from 'firebase/firestore';
 import { body, validationResult } from 'express-validator';
