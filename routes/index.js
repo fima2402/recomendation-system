@@ -1,6 +1,6 @@
 import express from 'express';
 import AHP from '../functions/AHP/index.js'
-import electre from '../functions/Electre/index.js';
+import electre from '../functions/electre/index.js';
 import saw from '../functions/SAW/index.js';
 import { loadJSON } from '../config/loadJson.js';
 
