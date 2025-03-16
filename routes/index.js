@@ -44,34 +44,5 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/listSchool', async (req, res) => {
-    try {
-        const db = getFirestore();
-        const colRef = collection(db, 'direction');
-        const snapshot = await getDocs(colRef);
-
-        const data = await Promise.all(snapshot.docs.map(async (doc) => {
-            const docData = doc.data();
-            
-            // Ambil data dari referensi sekolah
-            if (docData.school) {
-                const schoolRef = docData.school; // Ini adalah referensi
-                const schoolDoc = await schoolRef.get();
-                console.log(schoolDoc.data());
-                docData.school = schoolDoc.exists ? schoolDoc.data() : null; // Ambil data sekolah
-            }
-        
-            return docData;
-        }));
-
-        res.send({
-            data
-        })
-    } catch (error) {
-        res.status(500
-            ).json({ error: error.message });
-    }
-})
-
 // Ekspor router sebagai default
 export default router;
