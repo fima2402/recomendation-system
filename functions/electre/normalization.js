@@ -1,4 +1,5 @@
-import ahp from '../../database/ahp.json' assert { type: 'json' };
+import { loadJSON } from '../../config/loadJson.js';
+const ahp = await loadJSON('../database/ahp.json')
 
 export default function normalization(data) {
     let globalNormalization = 0;

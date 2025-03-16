@@ -2,13 +2,15 @@ import express from 'express';
 import AHP from '../functions/AHP/index.js'
 import electre from '../functions/Electre/index.js';
 import saw from '../functions/SAW/index.js';
-import { getFirestore, collection, getDoc, doc, getDocs, query, where, limit } from 'firebase/firestore';
-import schoolData from '../database/school.json' assert { type: 'json' };
+import { loadJSON } from '../config/loadJson.js';
+
+const schoolData = await loadJSON('../database/school.json')
 
 const router = express.Router();
 
 // Definisikan rute di sini
 router.get('/', (req, res) => {
+
     const ahpResult = AHP(schoolData.school);
     const electreResult = electre(ahpResult);
     const sawResult = saw(ahpResult);
@@ -37,6 +39,7 @@ router.get('/', (req, res) => {
     };
 
     res.json({
+        schoolData,
         ahp: ahpResult,
         electre: electreResult,
         saw: sawResult,
