@@ -1,15 +1,17 @@
 import express from 'express';
 import AHP from '../functions/AHP/index.js'
-import electre from '../functions/Electre/index.js';
+import electre from '../functions/electre/index.js';
 import saw from '../functions/SAW/index.js';
-import schoolData from '../database/school.json' assert { type: 'json' };
+import { loadJSON } from '../config/utils.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    const ahpResult = AHP(schoolData.school);
-    const electreResult = electre(ahpResult);
-    const sawResult = saw(ahpResult);
+router.get('/', async (req, res) => {
+    const schoolData = await loadJSON('../database/school.json')
+    
+    const ahpResult = await AHP(schoolData.school);
+    const electreResult = await electre(ahpResult);
+    const sawResult = await saw(ahpResult);
 
     const rankingByAhp = ahpResult.sort((a, b) => b.global_score - a.global_score);
     const rankingBySaw = sawResult.result.sort((a, b) => b.value - a.value);

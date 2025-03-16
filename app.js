@@ -3,10 +3,10 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import firebase from './config/firebase.js';
-import {swagerUi} from './config/swager.js';
+// import {swagerUi} from './config/swager.js';
 import dotenv from 'dotenv';
-import yaml from 'yaml'
-import fs from 'fs'
+// import yaml from 'yaml'
+// import fs from 'fs'
 
 // routes
 import indexRouter from './routes/index.js';
@@ -20,19 +20,19 @@ dotenv.config();
 firebase();
 
 var app = express();
-const fileSwager = fs.readFileSync('./config/swager.yaml', 'utf-8')
-const swagerDocument = yaml.parse(fileSwager)
+// const fileSwager = fs.readFileSync('./config/swager.yaml', 'utf-8')
+// const swagerDocument = yaml.parse(fileSwager)
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api-docs', swagerUi.serve, swagerUi.setup(swagerDocument));
+// app.use('/api-docs', swagerUi.serve, swagerUi.setup(swagerDocument));
 
-app.use('/', indexRouter);
-app.use('/seeder', seederRouter);
-app.use('/recomendation_system', recomendationSyestemRouter);
+// app.use('/', indexRouter);
+// app.use('/seeder', seederRouter);
+// app.use('/recomendation_system', recomendationSyestemRouter);
 app.use('/schools', schools);
 app.use('/address', address);
 

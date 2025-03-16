@@ -1,7 +1,7 @@
 import normalization from "./normalization.js"
 
-export default function saw(globalScore){
+export default async function saw(globalScore){
     return {
-        result: normalization(globalScore)
+        result: await normalization(globalScore)
     }
 }

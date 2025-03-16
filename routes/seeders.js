@@ -1,10 +1,12 @@
 import express from 'express';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { loadJSON } from '../config/utils.js';
 
 const router = express.Router();
 
 router.post('/schools', async(req, res) => {
     try {
+        const seeders = await loadJSON('../database/seeders.json')
         const db = getFirestore();
 
         for (const value of seeders.schools) {
@@ -30,6 +32,8 @@ router.post('/schools', async(req, res) => {
 
 router.post('/address', async(req, res) => {
     try {
+        const seeders = await loadJSON('../database/seeders.json')
+
         const db = getFirestore();
 
         for (const value of seeders.address) {
@@ -52,6 +56,8 @@ router.post('/address', async(req, res) => {
 
 router.post('/distance', async(req, res) => {
     try {
+        const seeders = await loadJSON('../database/seeders.json')
+        
         const db = getFirestore();
         for (const value of seeders.distance) {
             await setDoc(doc(db, "direction", value.distance_id), {
