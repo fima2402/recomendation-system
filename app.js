@@ -6,11 +6,14 @@ import firebase from './config/firebase.js';
 import {swagerUi} from './config/swager.js';
 import dotenv from 'dotenv';
 import yaml from 'yaml'
+import fs from 'fs'
 
 // routes
 import indexRouter from './routes/index.js';
 import seederRouter from './routes/seeders.js';
 import recomendationSyestemRouter from './routes/recomendation_system.js';
+import schools from './routes/schools.js'
+import address from './routes/address.js'
 
 dotenv.config();
 
@@ -30,6 +33,8 @@ app.use('/api-docs', swagerUi.serve, swagerUi.setup(swagerDocument));
 app.use('/', indexRouter);
 app.use('/seeder', seederRouter);
 app.use('/recomendation_system', recomendationSyestemRouter);
+app.use('/schools', schools);
+app.use('/address', address);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
