@@ -1,12 +1,3 @@
-/**
- * @swagger
- * /listSchool:
- *   get:
- *     summary: Retursn list oh schools
- *     responses:
- *       200:
- *         description: A successful response
- */
 import express from 'express';
 import AHP from '../functions/AHP/index.js'
 import electre from '../functions/Electre/index.js';
