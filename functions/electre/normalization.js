@@ -1,6 +1,3 @@
-import { loadJson } from '../../config/loadJson.js';
-const ahp = await loadJson('../database/ahp.json')
-
 export default function normalization(data) {
     let globalNormalization = 0;
 

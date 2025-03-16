@@ -2,9 +2,6 @@ import express from 'express';
 import AHP from '../functions/AHP/index.js'
 import electre from '../functions/electre/index.js';
 import saw from '../functions/SAW/index.js';
-import { loadJson } from '../config/loadJson.js';
-
-const schoolData = await loadJson('../database/school.json')
 
 const router = express.Router();
 

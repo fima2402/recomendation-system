@@ -1,8 +1,5 @@
 import express from 'express';
 import { getFirestore, collection, getDoc, doc, getDocs, query, where, limit, setDoc } from 'firebase/firestore';
-import { loadJson } from '../config/loadJson.js';
-
-const seeders = await loadJson('../database/seeders.json')
 
 const router = express.Router();
 
