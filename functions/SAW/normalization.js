@@ -1,5 +1,5 @@
-import { loadJSON } from '../../config/loadJson.js';
-const ahp = await loadJSON('../database/ahp.json')
+import { loadJson } from '../../config/loadJson.js';
+const ahp = await loadJson('../database/ahp.json')
 
 export default function normalization(data){
     const highestGlobalScore = data.reduce((max, current) => {

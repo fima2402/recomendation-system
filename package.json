@@ -18,6 +18,7 @@
     "nodemon": "^3.1.9",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "yaml": "^2.7.0"
+    "yaml": "^2.7.0",
+    "z-schema": "^6.0.2"
   }
 }

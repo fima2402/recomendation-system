@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
  * @param {string} filePath - The path to the JSON file.
  * @returns {Promise<Object|null>} - The parsed JSON data or null if an error occurs.
  */
-export async function loadJSON(dir) {
+export async function loadJson(dir) {
     try {
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = path.dirname(__filename);

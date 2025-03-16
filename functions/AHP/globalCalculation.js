@@ -1,5 +1,5 @@
-import { loadJSON } from '../../config/loadJson.js';
-const ahp = await loadJSON('../database/ahp.json');
+import { loadJson } from '../../config/loadJson.js';
+const ahp = await loadJson('../database/ahp.json');
 
 export default function globalCalculation(normalization) {
     const ahpData = ahp.criteria;
