@@ -2,7 +2,6 @@ import express from 'express';
 import AHP from '../functions/AHP/index.js'
 import electre from '../functions/electre/index.js';
 import saw from '../functions/SAW/index.js';
-import { loadJSON } from '../config/utils.js';
 import { school } from '../database/index.js';
 
 const router = express.Router();
