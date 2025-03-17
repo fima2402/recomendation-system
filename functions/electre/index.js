@@ -9,7 +9,7 @@ export default async function electre(globalScore){
 
     const result = {
         "WNormalization": {
-            result : globalNormalization.result.slice(0,5),
+            result : globalNormalization.result,
             length: globalNormalization.length
         },
         "concordance": {

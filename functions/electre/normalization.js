@@ -23,6 +23,7 @@ export default function normalization(data) {
     // normalization score global (single value)
     const singleNormalization = data.map(item => {
             return {
+                id: item.id,
                 name: item.name,
                 globalNormalization: item.global_score / globalNormalization
             }
@@ -31,6 +32,7 @@ export default function normalization(data) {
     // weight normalization
     const Wnormalization = singleNormalization.map(item => {
         return {
+            id: item.id,
             name: item.name,
             value: item.globalNormalization * ahpData.akreditas
         }

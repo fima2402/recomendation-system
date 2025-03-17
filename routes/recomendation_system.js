@@ -90,14 +90,24 @@ router.post('/', schema, async(req, res) => {
     const rankingAhp = rankingByAhp.map((item) => {
         return {
             id: item.id,
-            name: item.name
+            name: item.name,
+            calculation: {
+                ahp: ahpResult.find((v) => v.id === item.id).global_score,
+                electreResult: electreResult.WNormalization.result.find((v) => v.id === item.id).value,
+                sawResult: sawResult.result.find((v) => v.id === item.id).value,
+            }
         }
     })
 
     const rankingSaw = rankingBySaw.map((item) => {
         return {
             id: item.id,
-            name: item.name
+            name: item.name,
+            calculation: {
+                ahp: ahpResult.find((v) => v.id === item.id).global_score,
+                electreResult: electreResult.WNormalization.result.find((v) => v.id === item.id).value,
+                sawResult: sawResult.result.find((v) => v.id === item.id).value,
+            }
         }
     })
 
@@ -108,15 +118,6 @@ router.post('/', schema, async(req, res) => {
     };
 
     res.json({
-        ahp: {
-            result: ahpResult.slice(0,5),
-            length: ahpResult.length
-        },
-        electre: electreResult,
-        saw: {
-            result: sawResult.result.slice(0,5),
-            length: sawResult.length
-        },
         ranking: {
             result: isRankingEqual ? rankingAhp : rankingSaw,
             length: isRankingEqual ? rankingAhp.length : rankingSaw.length,
