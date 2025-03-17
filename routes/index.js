@@ -3,13 +3,14 @@ import AHP from '../functions/AHP/index.js'
 import electre from '../functions/electre/index.js';
 import saw from '../functions/SAW/index.js';
 import { loadJSON } from '../config/utils.js';
+import { school } from '../database/index.js';
 
 const router = express.Router();
+const schoolData = school();
 
 router.get('/', async (req, res) => {
-    const schoolData = await loadJSON('../database/school.json')
-    
-    const ahpResult = await AHP(schoolData.school);
+    const dataSchool = schoolData.school
+    const ahpResult = await AHP(dataSchool);
     const electreResult = await electre(ahpResult);
     const sawResult = await saw(ahpResult);
 

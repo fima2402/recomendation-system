@@ -1,9 +1,9 @@
-import {loadJSON} from '../../config/utils.js';
+import { ahp } from '../../database/index.js';
 
-const ahp = await loadJSON('../database/ahp.json');
+const dataAhp = ahp()
 
 export default function globalCalculation(normalization) {
-    const ahpData = ahp.criteria;
+    const ahpData = dataAhp.criteria;
 
     const result = normalization.map(item => {
         const akreditasi = item.akreditasiNormalized * ahpData.akreditas;

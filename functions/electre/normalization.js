@@ -1,8 +1,9 @@
-import {loadJSON} from '../../config/utils.js';
+import { ahp } from '../../database/index.js';
 
-const ahp = await loadJSON('../database/ahp.json');
+const dataAhp = ahp()
 
 export default function normalization(data) {
+    const ahpData = dataAhp.criteria;
     let globalNormalization = 0;
 
     // normalization score global (all value)
@@ -31,7 +32,7 @@ export default function normalization(data) {
     const Wnormalization = singleNormalization.map(item => {
         return {
             name: item.name,
-            value: item.globalNormalization * ahp.criteria.akreditas
+            value: item.globalNormalization * ahpData.akreditas
         }
     })
 
