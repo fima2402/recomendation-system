@@ -26,33 +26,34 @@ router.post('/', schema, async(req, res) => {
     // firebase
     const { address: userAddress, type: userType } = body;
 
-    const schools = [];
-    const distance = [];
+    const list_schools = [];
+    const list_distance = [];
 
+    // get list schools
     let docs = await getDocs(
                             query(
                                 collection(db, "schools"), 
                                 userType ? where('type', '==', userType) : '',
                                 )
                         )
-
     docs.forEach((doc) => {
-            schools.push(doc.data())
+        list_schools.push(doc.data())
     })
 
+    // get list of distance
     docs = await getDocs(collection(db, "distance"))
     docs.forEach((doc) => {
-            distance.push(doc.data())
+        list_distance.push(doc.data())
     })
 
     // main function
     
-    const result = schools.map((school) => {
+    const result = list_schools.map((school) => {
             let distance_value = 1
             let accreditation_value = 1
             let facility_value = 1
     
-            const distance = distance.find((v) => v.school_id === school.id)
+            const distance = list_distance.find((v) => v.school_id === school.id)
     
             if(distance) {
                 if (distance.priority_1.address_id === userAddress) {
@@ -78,9 +79,9 @@ router.post('/', schema, async(req, res) => {
     })
 
     // method
-    const ahpResult = AHP(result);
-    const electreResult = electre(ahpResult);
-    const sawResult = saw(ahpResult);
+    const ahpResult = await AHP(result);
+    const electreResult = await electre(ahpResult);
+    const sawResult = await saw(ahpResult);
 
     // ranking
     const rankingByAhp = ahpResult.sort((a, b) => b.global_score - a.global_score);
@@ -107,10 +108,19 @@ router.post('/', schema, async(req, res) => {
     };
 
     res.json({
-        ahp: ahpResult,
+        ahp: {
+            result: ahpResult.slice(0,5),
+            length: ahpResult.length
+        },
         electre: electreResult,
-        saw: sawResult,
-        ranking: isRankingEqual ? rankingAhp : rankingSaw
+        saw: {
+            result: sawResult.result.slice(0,5),
+            length: sawResult.length
+        },
+        ranking: {
+            result: isRankingEqual ? rankingAhp : rankingSaw,
+            length: isRankingEqual ? rankingAhp.length : rankingSaw.length,
+        }
     });
 })
 

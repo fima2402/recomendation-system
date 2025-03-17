@@ -1,6 +1,5 @@
 export default function discordance(data) {
     let discordance = [];
-    let discordanceValue = 0;
     let discordanceResult = 0;
 
     data.forEach((v, i) => {

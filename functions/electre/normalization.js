@@ -36,5 +36,8 @@ export default function normalization(data) {
         }
     })
 
-    return Wnormalization
+    return {
+        result: Wnormalization,
+        length: Wnormalization.length
+    }
 }
