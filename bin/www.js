@@ -26,7 +26,7 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 server.listen(port, () => {
-  console.log(`Hola amigos, aplikasi berhasil dijalankan di http://localhost:${port}/api-docs`);
+  console.log(`Hola amigos, aplikasi berhasil dijalankan di http://localhost:${port}`);
 });
 server.on('error', onError);
 server.on('listening', onListening);

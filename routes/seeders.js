@@ -1,6 +1,5 @@
 import express from 'express';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
-import { loadJSON } from '../config/utils.js';
 import { seeders } from '../database/index.js';
 
 const router = express.Router();
@@ -33,8 +32,6 @@ router.post('/schools', async(req, res) => {
 
 router.post('/address', async(req, res) => {
     try {
-        const seeders = await loadJSON('../database/seeders.json')
-
         const db = getFirestore();
 
         for (const value of dataSeeders.address) {
@@ -56,12 +53,10 @@ router.post('/address', async(req, res) => {
 })
 
 router.post('/distance', async(req, res) => {
-    try {
-        const seeders = await loadJSON('../database/seeders.json')
-        
+    try {        
         const db = getFirestore();
         for (const value of dataSeeders.distance) {
-            await setDoc(doc(db, "direction", value.distance_id), {
+            await setDoc(doc(db, "distance", value.distance_id), {
                 school_id: value.school_id,
                 priority_1: {
                     address_id: value.priority_1,

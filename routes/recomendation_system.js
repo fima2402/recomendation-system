@@ -27,7 +27,7 @@ router.post('/', schema, async(req, res) => {
     const { address: userAddress, type: userType } = body;
 
     const schools = [];
-    const direction = [];
+    const distance = [];
 
     let docs = await getDocs(
                             query(
@@ -40,9 +40,9 @@ router.post('/', schema, async(req, res) => {
             schools.push(doc.data())
     })
 
-    docs = await getDocs(collection(db, "direction"))
+    docs = await getDocs(collection(db, "distance"))
     docs.forEach((doc) => {
-            direction.push(doc.data())
+            distance.push(doc.data())
     })
 
     // main function
@@ -52,7 +52,7 @@ router.post('/', schema, async(req, res) => {
             let accreditation_value = 1
             let facility_value = 1
     
-            const distance = direction.find((v) => v.school_id === school.id)
+            const distance = distance.find((v) => v.school_id === school.id)
     
             if(distance) {
                 if (distance.priority_1.address_id === userAddress) {
