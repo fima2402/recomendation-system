@@ -27,7 +27,9 @@ router.post('/', schema, async(req, res) => {
     const { address: userAddress, type: userType } = body;
 
     const list_schools = [];
+    const list_address = [];
     const list_distance = [];
+
 
     // get list schools
     let docs = await getDocs(
@@ -46,8 +48,13 @@ router.post('/', schema, async(req, res) => {
         list_distance.push(doc.data())
     })
 
+    // get list of distance
+    docs = await getDocs(collection(db, "address"))
+    docs.forEach((doc) => {
+        list_address.push(doc.data())
+    })
+
     // main function
-    
     const result = list_schools.map((school) => {
             let distance_value = 1
             let accreditation_value = 1
@@ -72,9 +79,19 @@ router.post('/', schema, async(req, res) => {
             return {
                 id: school.id,
                 name: school.name,
-                jarak: distance_value,
-                akreditasi: accreditation_value,
-                fasilitas: facility_value,
+                address: list_address.find(v => v.id === distance.priority_1.address_id).name,
+                distance: {
+                    name: list_address.find(v => v.id === userAddress).name,
+                    value: distance_value
+                },
+                facility: {
+                    name: school.facility,
+                    value: facility_value
+                },
+                accreditation: {
+                    name: school.accreditation,
+                    value: accreditation_value
+                }
             }
     })
 
@@ -91,6 +108,10 @@ router.post('/', schema, async(req, res) => {
         return {
             id: item.id,
             name: item.name,
+            address: item.address,
+            distance: item.distance,
+            facility: item.facility,
+            accreditation: item.accreditation,
             calculation: {
                 ahp: ahpResult.find((v) => v.id === item.id).global_score,
                 electreResult: electreResult.WNormalization.result.find((v) => v.id === item.id).value,
@@ -103,6 +124,10 @@ router.post('/', schema, async(req, res) => {
         return {
             id: item.id,
             name: item.name,
+            address: item.address,
+            distance: item.distance,
+            facility: item.facility,
+            accreditation: item.accreditation,
             calculation: {
                 ahp: ahpResult.find((v) => v.id === item.id).global_score,
                 electreResult: electreResult.WNormalization.result.find((v) => v.id === item.id).value,

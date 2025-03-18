@@ -13,6 +13,10 @@ export default function normalization(data){
         return {
             id: item.id,
             name: item.name,
+            address: item.address,
+            distance: item.distance,
+            facility: item.facility,
+            accreditation: item.accreditation,
             value: item.global_score / highestGlobalScore
         }
     })

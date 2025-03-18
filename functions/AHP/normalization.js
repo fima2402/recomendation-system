@@ -1,8 +1,8 @@
 export default function normalization(data) {
     // Step 1: Extract the values for each criterion
-    const akreditasiValues = data.map(item => item.akreditasi);
-    const fasilitasValues = data.map(item => item.fasilitas);
-    const jarakValues = data.map(item => item.jarak);
+    const akreditasiValues = data.map(item => item.accreditation.value);
+    const fasilitasValues = data.map(item => item.facility.value);
+    const jarakValues = data.map(item => item.distance.value);
 
     // Step 2: Sum the values in each column
     const sumAkreditasi = akreditasiValues.reduce((acc, value) => acc + value, 0);
@@ -14,9 +14,13 @@ export default function normalization(data) {
         return {
             id: item.id,
             name: item.name,
-            akreditasiNormalized: item.akreditasi / sumAkreditasi,
-            fasilitasNormalized: item.fasilitas / sumFasilitas,
-            jarakNormalized: item.jarak / sumJarak
+            address: item.address,
+            distance: item.distance,
+            facility: item.facility,
+            accreditation: item.accreditation,
+            akreditasiNormalized: item.accreditation.value / sumAkreditasi,
+            fasilitasNormalized: item.facility.value / sumFasilitas,
+            jarakNormalized: item.distance.value / sumJarak
         };
     });
 
