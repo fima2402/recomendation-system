@@ -14,6 +14,7 @@ export default function normalization(data){
             id: item.id,
             name: item.name,
             address: item.address,
+            type: item.type,
             distance: item.distance,
             facility: item.facility,
             accreditation: item.accreditation,

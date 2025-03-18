@@ -79,6 +79,7 @@ router.post('/', schema, async(req, res) => {
             return {
                 id: school.id,
                 name: school.name,
+                type: school.type,
                 address: list_address.find(v => v.id === distance.priority_1.address_id).name,
                 distance: {
                     name: list_address.find(v => v.id === userAddress).name,
@@ -109,6 +110,7 @@ router.post('/', schema, async(req, res) => {
             id: item.id,
             name: item.name,
             address: item.address,
+            type: item.type,
             distance: item.distance,
             facility: item.facility,
             accreditation: item.accreditation,
@@ -125,6 +127,7 @@ router.post('/', schema, async(req, res) => {
             id: item.id,
             name: item.name,
             address: item.address,
+            type: item.type,
             distance: item.distance,
             facility: item.facility,
             accreditation: item.accreditation,

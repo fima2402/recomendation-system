@@ -16,6 +16,7 @@ export default function normalization(data) {
             name: item.name,
             address: item.address,
             distance: item.distance,
+            type: item.type,
             facility: item.facility,
             accreditation: item.accreditation,
             akreditasiNormalized: item.accreditation.value / sumAkreditasi,
