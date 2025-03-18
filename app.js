@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-// app.use('/recomendation_system', recomendationSyestemRouter);
+app.use('/recomendation_system', recomendationSyestemRouter);
 app.use('/seeders', seederRouter);
 app.use('/schools', schools);
 app.use('/address', address);
