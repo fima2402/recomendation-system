@@ -18,6 +18,7 @@ export default function normalization(data){
             distance: item.distance,
             facility: item.facility,
             accreditation: item.accreditation,
+            link_profile: item.link_profile,
             value: item.global_score / highestGlobalScore
         }
     })

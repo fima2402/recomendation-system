@@ -81,6 +81,7 @@ router.post('/', schema, async(req, res) => {
                 name: school.name,
                 type: school.type,
                 address: list_address.find(v => v.id === distance.priority_1.address_id).name,
+                link_profile: school.link_profile,
                 distance: {
                     name: list_address.find(v => v.id === userAddress).name,
                     value: distance_value
@@ -114,6 +115,7 @@ router.post('/', schema, async(req, res) => {
             distance: item.distance,
             facility: item.facility,
             accreditation: item.accreditation,
+            link_profile: item.link_profile,
             calculation: {
                 ahp: ahpResult.find((v) => v.id === item.id).global_score,
                 electreResult: electreResult.WNormalization.result.find((v) => v.id === item.id).value,
@@ -131,6 +133,7 @@ router.post('/', schema, async(req, res) => {
             distance: item.distance,
             facility: item.facility,
             accreditation: item.accreditation,
+            link_profile: item.link_profile,
             calculation: {
                 ahp: ahpResult.find((v) => v.id === item.id).global_score,
                 electreResult: electreResult.WNormalization.result.find((v) => v.id === item.id).value,
