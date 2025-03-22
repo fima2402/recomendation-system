@@ -74,7 +74,7 @@ router.post('/', schema, async(req, res) => {
             }
     
             school.accreditation === 'A' ? accreditation_value = 3 : school.accreditation === 'B' ? accreditation_value = 2 : accreditation_value = 1
-            school.facility === 'layak' ? facility_value = 3 : school.facility === 'setara' ? facility_value = 2 : facility_value = 1
+            school.facility === 'memadai' ? facility_value = 3 : school.facility === 'setara' ? facility_value = 2 : facility_value = 1
     
             return {
                 id: school.id,
