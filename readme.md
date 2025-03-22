@@ -22,7 +22,7 @@ Proyek ini menggunakan berbagai teknologi dan bahasa pemrograman untuk pengemban
 Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini:
 
 ```
-   git clone https://github.com/dewa-nanda/recomendation-system.git
+   git clone https://github.com/fima2402/recomendation-system.git
    cd recomendation-system
    npm install
    npm run start
