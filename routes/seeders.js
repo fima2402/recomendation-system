@@ -15,7 +15,8 @@ router.post('/schools', async(req, res) => {
                 name: value.name,
                 type: value.type,
                 accreditation: value.akreditasi,
-                facility: value.fasilitas
+                facility: value.fasilitas,
+                link_profile: value.link_profile,
             })
 
             console.log(`data ${value.school_id} berhasil ditambahkan!`)

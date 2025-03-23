@@ -74,13 +74,14 @@ router.post('/', schema, async(req, res) => {
             }
     
             school.accreditation === 'A' ? accreditation_value = 3 : school.accreditation === 'B' ? accreditation_value = 2 : accreditation_value = 1
-            school.facility === 'layak' ? facility_value = 3 : school.facility === 'setara' ? facility_value = 2 : facility_value = 1
+            school.facility === 'memadai' ? facility_value = 3 : school.facility === 'setara' ? facility_value = 2 : facility_value = 1
     
             return {
                 id: school.id,
                 name: school.name,
                 type: school.type,
                 address: list_address.find(v => v.id === distance.priority_1.address_id).name,
+                link_profile: school.link_profile,
                 distance: {
                     name: list_address.find(v => v.id === userAddress).name,
                     value: distance_value
@@ -114,6 +115,7 @@ router.post('/', schema, async(req, res) => {
             distance: item.distance,
             facility: item.facility,
             accreditation: item.accreditation,
+            link_profile: item.link_profile,
             calculation: {
                 ahp: ahpResult.find((v) => v.id === item.id).global_score,
                 electreResult: electreResult.WNormalization.result.find((v) => v.id === item.id).value,
@@ -131,6 +133,7 @@ router.post('/', schema, async(req, res) => {
             distance: item.distance,
             facility: item.facility,
             accreditation: item.accreditation,
+            link_profile: item.link_profile,
             calculation: {
                 ahp: ahpResult.find((v) => v.id === item.id).global_score,
                 electreResult: electreResult.WNormalization.result.find((v) => v.id === item.id).value,
